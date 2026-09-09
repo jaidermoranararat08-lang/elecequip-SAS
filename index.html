@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ELECEQUIP SAS — Tecnología, Bienestar e Innovación Industrial. Equipos electrónicos colombianos: PEMF, automatización, control industrial, diagnóstico vehicular, comunicaciones.">
+    <meta name="keywords" content="ELECEQUIP, PEMF, terapia magnética, automatización, escáner vehicular, tecnología colombiana">
+    <meta name="author" content="ELECEQUIP SAS">
+    <title>ELECEQUIP SAS — Tecnología e Innovación para el Bienestar y la Industria</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        :root { --azul: #0B3D91; --verde: #00A86B; --naranja: #FF7A00; --gris: #F4F6F8; --oscuro: #1A1A2E; }
+        body { line-height: 1.6; color: #333; background: #fff; }
+        .contenedor { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* CABECERA */
+        header { background: linear-gradient(135deg, var(--azul) 0%, #165DFF 100%); color: white; padding: 1.2rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,.1); }
+        .logo { font-size: 1.8rem; font-weight: bold; }
+        .logo span { color: var(--verde); }
+        nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; flex-wrap: wrap; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: color .3s; }
+        .nav-links a:hover { color: var(--verde); }
+        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; }
+
+        /* HERO */
+        .hero { background: linear-gradient(rgba(11,61,145,.9), rgba(22,93,255,.8)); color: white; padding: 5rem 0; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; max-width: 800px; margin: 0 auto 2rem; }
+        .btn { display: inline-block; padding: .9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold; transition: transform .3s, box-shadow .3s; margin: .5rem; }
+        .btn-verde { background: var(--verde); color: white; }
+        .btn-verde:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,168,107,.3); }
+        .btn-naranja { background: var(--naranja); color: white; }
+        .btn-naranja:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,122,0,.3); }
+
+        /* SECCIONES GENERALES */
+        section { padding: 4.5rem 0; }
+        h2 { font-size: 2.3rem; text-align: center; margin-bottom: 3rem; color: var(--oscuro); position: relative; }
+        h2::after { content: ''; width: 80px; height: 4px; background: var(--verde); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+        .subtitulo { text-align: center; max-width: 700px; margin: -2rem auto 3rem; color: #666; font-size: 1.1rem; }
+
+        /* NOSOTROS */
+        #nosotros { background: white; }
+        .grid-nosotros { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .lista-valores { list-style: none; margin-top: 1.5rem; }
+        .lista-valores li { padding: .5rem 0; border-bottom: 1px solid #eee; }
+        .lista-valores li::before { content: '✓ '; color: var(--verde); font-weight: bold; margin-right: .5rem; }
+
+        /* PRODUCTO PEMF */
+        #producto-pemf { background: var(--gris); }
+        .producto-pemf-card { background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.08); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+        .pemf-imagen { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); display: flex; align-items: center; justify-content: center; font-size: 8rem; color: var(--verde); }
+        .pemf-contenido { padding: 2.5rem; }
+        .etiqueta { display: inline-block; background: var(--verde); color: white; padding: .3rem 1rem; border-radius: 20px; font-size: .9rem; margin-bottom: 1rem; }
+        .caracteristicas-pemf { columns: 2; margin: 1.5rem 0; list-style: none; }
+        .caracteristicas-pemf li { margin-bottom: .5rem; }
+        .modos { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 2rem 0; }
+        .modo-card { padding: 1rem; border-radius: 12px; text-align: center; }
+        .modo1 { background: #E3F2FD; color: #0D47A1; }
+        .modo2 { background: #E8F5E9; color: #2E7D32; }
+        .modo3 { background: #FFF3E0; color: #E65100; }
+
+        /* LÍNEAS DE NEGOCIO */
+        #lineas { background: white; }
+        .grid-lineas { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2rem; }
+        .linea-card { padding: 2rem; border-radius: 16px; background: var(--gris); transition: transform .3s, box-shadow .3s; }
+        .linea-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,.1); }
+        .linea-card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--azul); }
+        .icono { font-size: 2.5rem; margin-bottom: 1rem; }
+
+        /* TESTIMONIOS */
+        #testimonios { background: var(--gris); }
+        .grid-testimonios { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 2rem; }
+        .testimonio-card { background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,.05); }
+        .estrellas { color: #FFC107; font-size: 1.2rem; margin-bottom: 1rem; }
+        .testimonio-card p { font-style: italic; color: #555; margin-bottom: 1rem; }
+        .autor { font-weight: bold; color: var(--azul); }
+
+        /* CONTACTO */
+        #contacto { background: var(--oscuro); color: white; }
+        #contacto h2 { color: white; }
+        #contacto h2::after { background: var(--naranja); }
+        .grid-contacto { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .info-contacto p { margin: 1rem 0; font-size: 1.1rem; }
+        .info-contacto strong { color: var(--verde); }
+        .info-contacto a { color: white; text-decoration: underline; }
+        form { display: flex; flex-direction: column; gap: 1rem; }
+        input, select, textarea { padding: 1rem; border-radius: 8px; border: none; font-size: 1rem; color: #333; width: 100%; }
+        textarea { min-height: 150px; resize: vertical; }
+        button[type="submit"] { background: var(--verde); color: white; border: none; padding: 1rem; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background .3s; }
+        button[type="submit"]:hover { background: #008f5c; }
+
+        /* FOOTER */
+        footer { background: #0F0F1A; color: #AAA; padding: 3rem 0 1.5rem; text-align: center; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; list-style: none; margin-bottom: 2rem; flex-wrap: wrap; }
+        .footer-links a { color: #CCC; text-decoration: none; }
+        .footer-links a:hover { color: var(--verde); }
+        .copyright { margin-top: 2rem; font-size: .9rem; border-top: 1px solid #222; padding-top: 1.5rem; }
+
+        /* RESPONSIVO */
+        @media(max-width: 768px){
+            .nav-links { position: absolute; top: 100%; left: 0; right: 0; background: var(--azul); flex-direction: column; padding: 1rem 0; gap: 1rem; display: none; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .hero h1 { font-size: 2rem; }
+            .grid-nosotros, .producto-pemf-card, .grid-contacto { grid-template-columns: 1fr; }
+            .modos { grid-template-columns: 1fr; }
+            .btn-naranja { margin-left: 0; margin-top: 1rem; display: inline-block; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==============================================
+                    CABECERA
+============================================== -->
+<header>
+    <div class="contenedor">
+        <nav>
+            <div class="logo">ELEC<span>EQUIP</span> SAS</div>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#producto-pemf">Productos</a></li>
+                <li><a href="#lineas">Líneas de Negocio</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuBtn">☰</div>
+        </nav>
+    </div>
+</header>
+
+<!-- ==============================================
+                    HERO — INICIO
+============================================== -->
+<section class="hero" id="inicio">
+    <div class="contenedor">
+        <h1>Innovación Electrónica para un Mundo Mejor</h1>
+        <p>Soluciones tecnológicas integrales — desde equipos de salud hasta sistemas de control industrial, residencial, de transporte y comunicaciones. Fabricado en Colombia con calidad mundial.</p>
+        <a href="#producto-pemf" class="btn btn-verde">Ver Productos</a>
+        <a href="#contacto" class="btn btn-naranja">Cotizar Ahora</a>
+    </div>
+</section>
+
+<!-- ==============================================
+                    NOSOTROS
+============================================== -->
+<section id="nosotros">
+    <div class="contenedor">
+        <h2>¿Quiénes Somos?</h2>
+        <div class="grid-nosotros">
+            <div>
+                <h3>Ingeniería, Ciencia y Compromiso con Colombia</h3>
+                <p><strong>ELECEQUIP SAS</strong> es una empresa colombiana fundada con el propósito de desarrollar tecnología propia, accesible y de alto impacto. Combinamos conocimientos en electrónica, programación, ingeniería biomédica y sistemas de control para crear soluciones que mejoran la calidad de vida y la productividad.</p>
+                <p>Nuestra sede está en <strong>Buenaventura, Valle del Cauca</strong>, desde donde proyectamos innovación a todo el país y más allá.</p>
+                <ul class="lista-valores">
+                    <li>Tecnología propia — diseño y fabricación nacional 🇨🇴</li>
+                    <li>Calidad certificada — componentes seleccionados rigurosamente</li>
+                    <li>Precios justos — sin intermediarios costosos</li>
+                    <li>Soporte técnico local — respaldo real y cercano</li>
+                    <li>Compromiso social — creamos empleo y desarrollo regional</li>
+                </ul>
+            </div>
+            <div style="background: var(--gris); border-radius: 16px; padding: 2rem; text-align: center;">
+                <div style="font-size: 5rem; color: var(--azul);">🏭</div>
+                <h4>Misión</h4>
+                <p>Desarrollar y fabricar soluciones electrónicas innovadoras que contribuyan al bienestar de las personas y al progreso de la industria, el transporte y las comunicaciones.</p>
+                <h4 style="margin-top: 1.5rem;">Visión</h4>
+                <p>Ser empresa líder en tecnología nacional, reconocida por calidad, innovación y responsabilidad social para el 2030.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==============================================
+            PRODUCTO ESTRELLA — SISTEMA PEMF
+============================================== -->
+<section id="producto-pemf">
+    <div class="contenedor">
+        <h2>Producto Estrella — Sistema PEMF</h2>
+        <p class="subtitulo">Terapia Magnética Pulsada — Alivio natural del dolor, regeneración de tejidos y bienestar celular sin medicamentos ni efectos secundarios</p>
+        
+        <div class="producto-pemf-card">
+            <div class="pemf-imagen">🧲</div>
+            <div class="pemf-contenido">
+                <span class="etiqueta">✨ Novedad 2026</span>
+                <h3>Sistema PEMF — Terapia Magnética Pulsada</h3>
+                <p>Dispositivo médico-terapéutico que genera campos magnéticos pulsados de baja frecuencia, penetrando 3 a 5 cm en los tejidos para estimular la regeneración natural, reducir inflamación y aliviar el dolor de forma efectiva y duradera.</p>
+                
+                <div class="modos">
+                    <div class="modo-card modo1">
+                        <strong>🔵 DOLOR</strong><br>
+                        10 Hz — Alivio rápido
+                    </div>
+                    <div class="modo-card modo2">
+                        <strong>🟢 REGENERACIÓN</strong><br>
+                        20 Hz — Reparación profunda
+                    </div>
+                    <div class="modo-card modo3">
+                        <strong>🟠 DESINFLAMACIÓN</strong><br>
+                        50 Hz — Mejora circulatoria
+                    </div>
+                </div>
+                
+                <ul class="caracteristicas-pemf">
+                    <li>Penetra piel, músculo y hueso</li>
+                    <li>Sin fármacos ni efectos secundarios</li>
+                    <li>Uso seguro en casa</li>
+                    <li>Sesiones programables 5–60 min</li>
+                    <li>Apagado automático y alarma sonora</li>
+                    <li>Pantalla LCD y menú intuitivo</li>
+                    <li>Fabricado en Colombia 🇨🇴</li>
+                    <li>Garantía 12 meses</li>
+                </ul>
+                
+                <a href="#contacto" class="btn btn-verde">💬 Solicitar Información y Precio</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==============================================
+            LÍNEAS DE NEGOCIOS — TODAS
+============================================== -->
+<section id="lineas">
+    <div class="contenedor">
+        <h2>Nuestras Líneas de Solución</h2>
+        <p class="subtitulo">No fabricamos un solo producto — creamos tecnología para múltiples sectores. Conoce todas nuestras áreas de desarrollo:</p>
+        
+        <div class="grid-lineas">
+            <!-- 🏠 HOGAR -->
+            <div class="linea-card">
+                <div class="icono">🏠</div>
+                <h3>Control Inteligente del Hogar</h3>
+                <p>Automatización residencial accesible y eficiente:</p>
+                <ul style="margin-top: .8rem; list-style: none;">
+                    <li>• Sistema de detección de nivel de agua y bombeo automático</li>
+                    <li>• Control de iluminación y energía</li>
+                    <li>• Protección contra sobretensiones y fallos de red</li>
+                    <li>• Monitoreo remoto de consumo eléctrico</li>
+                    <li>• Soluciones económicas — sin costosos sistemas importados</li>
+                </ul>
+            </div>
+            
+            <!-- 🏭 INDUSTRIA -->
+            <div class="linea-card">
+                <div class="icono">🏭</div>
+                <h3>Automatización y Control Industrial</h3>
+                <p>Soluciones robustas para la industria farmacéutica, manufactura y energía:</p>
+                <ul style="margin-top: .8rem; list-style: none;">
+                    <li>• Sistemas de control y monitoreo de inversores y bancos de baterías</li>
+                    <li>• Automatización de procesos farmacéuticos — cumplimiento normativo</li>
+                    <li>• Monitoreo en tiempo real de variables críticas</li>
+                    <li>• Sistemas de respaldo energético y gestión de carga</li>
+                    <li>• Tableros de control personalizados</li>
+                </ul>
+            </div>
+            
+            <!-- 🚛 TRANSPORTE -->
+            <div class="linea-card">
+                <div class="icono">🚗</div>
+                <h3>Electrónica para el Transporte</h3>
+                <p>Diagnóstico y soluciones para el sector automotor y de transporte:</p>
+                <ul style="margin-top: .8rem; list-style: none;">
+                    <li>• Multi Scaner V3.0 — Escáner diagnóstico multi-marca vehicular</li>
+                    <li>• Lectura y programación de ECU de múltiples marcas</li>
+                    <li>• Sistemas de monitoreo de flotas y consumo</li>
+                    <li>• Controladores de carga y gestión energética en vehículos</li>
+                    <li>• Desarrollo de dispositivos telemétricos</li>
+                </ul>
+            </div>
+            
+            <!-- 📡 COMUNICACIONES -->
+            <div class="linea-card">
+                <div class="icono">📡</div>
+                <h3>Comunicaciones y Conectividad</h3>
+                <p>Sistemas de conexión para zonas difíciles y entornos remotos:</p>
+                <ul style="margin-top: .8rem; list-style: none;">
+                    <li>• Redes de comunicación para zonas de difícil acceso</li>
+                    <li>• Monitoreo remoto de equipos y estaciones</li>
+                    <li>• Sistemas de alerta y notificación en tiempo real</li>
+                    <li>• Integración de datos entre dispositivos y plataformas</li>
+                    <li>• Soluciones IoT adaptadas a necesidades locales</li>
+                </ul>
+            </div>
+            
+            <!-- 💊 FARMACÉUTICA -->
+            <div class="linea-card">
+                <div class="icono">💊</div>
+                <h3>Tecnología Farmacéutica y Biomédica</h3>
+                <p>Equipos especializados para el sector salud y farmacéutico:</p>
+                <ul style="margin-top: .8rem; list-style: none;">
+                    <li>• Equipos de terapia física y rehabilitación (PEMF)</li>
+                    <li>• Sistemas de control de procesos de fabricación</li>
+                    <li>• Monitoreo de condiciones ambientales en laboratorios</li>
+                    <li>• Registro y trazabilidad de variables de producción</li>
+                    <li>• Diseño de equipos médicos a medida</li>
+                </ul>
+            </div>
+            
+            <!-- 🔧 DESARROLLO A MEDIDA -->
+            <div class="linea-card">
+                <div class="icono">🔧</div>
+                <h3>Desarrollo Electrónico a Medida</h3>
+                <p>¿Tienes una idea o necesidad específica? La convertimos en producto:</p>
+                <ul style="margin-top: .8rem; list-style: none;">
+                    <li>• Diseño de circuitos impresos (PCB) y prototipos</li>
+                    <li>• Programación de microcontroladores y sistemas embebidos</li>
+                    <li>• Transformación de concepto a producto final</li>
+                    <li>• Asesoría técnica y acompañamiento completo</li>
+                    <li>• Escalado de producción</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==============================================
+                    TESTIMONIOS
+============================================== -->
+<section id="testimonios">
+    <div class="contenedor">
+        <h2>Lo que Dicen Nuestros Usuarios</h2>
+        <p class="subtitulo">La mejor garantía es la satisfacción de quienes confían en nosotros</p>
+        
+        <div class="grid-testimonios">
+            <div class="testimonio-card">
+                <div class="estrellas">⭐⭐⭐⭐⭐</div>
+                <p>"Llevaba años con dolor de rodilla por artrosis. Probé de todo y nada me ayudaba de verdad. Con el equipo PEMF, a la semana ya dormía sin despertar por el dolor. Es increíble lo que hace."</p>
+                <div class="autor">— Marta G., 58 años • Buenaventura</div>
+            </div>
+            
+            <div class="testimonio-card">
+                <div class="estrellas">⭐⭐⭐⭐⭐</div>
+                <p>"Instalamos el sistema de control de agua en nuestra planta y ya no se nos olvida apagar la bomba ni se desperdicia agua. Ahorro real y tranquilidad. Equipo robusto y muy bien hecho."</p>
+                <div class="autor">— Carlos R., Gerente de Planta • Cali</div>
+            </div>
+            
+            <div class="testimonio-card">
+                <div class="estrellas">⭐⭐⭐⭐⭐</div>
+                <p>"El escáner vehicular Multi Scaner nos ha ahorrado horas de diagnóstico en el taller. Lee marcas que otros equipos no detectan y a un precio que nos permite ofrecer mejor servicio a nuestros clientes."</p>
+                <div class="autor">— Taller Automotriz El Sol • Medellín</div>
+            </div>
+            
+            <div class="testimonio-card">
+                <div class="estrellas">⭐⭐⭐⭐⭐</div>
+                <p>"Mi mamá tiene artritis en las manos y no podía ni peinarse. Con el tratamiento, en dos semanas ya abre y cierra los dedos con facilidad. Le devolvieron calidad de vida."</p>
+                <div class="autor">— Liliana R. • Bogotá</div>
+            </div>
+            
+            <div class="testimonio-card">
+                <div class="estrellas">⭐⭐⭐⭐⭐</div>
+                <p>"Desarrollaron para nosotros un sistema de monitoreo de energía que se adapta exactamente a lo que necesitábamos. Profesionales, puntuales y muy comprometidos con la calidad."</p>
+                <div class="autor">— Empresa de Energía Regional • Valle del Cauca</div>
+            </div>
+            
+            <div class="testimonio-card">
+                <div class="estrellas">⭐⭐⭐⭐⭐</div>
+                <p>"Como deportista siempre tengo lesiones y dolores musculares. Con el modo Desinflamación en 15 minutos me recupero para el siguiente entrenamiento. No lo cambio por nada."</p>
+                <div class="autor">— Andrés F., Deportista • Pereira</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==============================================
+                    CONTACTO
+============================================== -->
+<section id="contacto">
+    <div class="contenedor">
+        <h2>Contáctanos</h2>
+        <p class="subtitulo" style="color: #CCC;">¿Tienes una necesidad, proyecto o quieres más información? Escríbenos y te responderemos pronto</p>
+        
+        <div class="grid-contacto">
+            <div class="info-contacto">
+                <h3 style="margin-bottom: 1.5rem; color: var(--verde);">Datos de Contacto</h3>
+                <p><strong>📍 Dirección:</strong> Buenaventura, Valle del Cauca • Colombia 🇨🇴</p>
+                <p><strong>📞 Teléfono / WhatsApp:</strong> <a href="tel:+573107883308">+57 310 788 3308</a></p>
+                <p><strong>✉️ Correo Electrónico:</strong> <a href="mailto:jaidermoranararat08@gmail.com">jaidermoranararat08@gmail.com</a></p>
+                <p><strong>🌐 Página Web:</strong> <a href="https://jaidermoranararat08-lang.github.io/Elecequip-SAS/">jaidermoranararat08-lang.github.io/Elecequip-SAS</a></p>
+                <p><strong>🕒 Horario de Atención:</strong> Lunes a Viernes — 8:00 a.m. a 6:00 p.m.</p>
+                <p><strong>📲 Redes Sociales:</strong> @ELECEQUIPSAS</p>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(0,168,107,.1); border-radius: 12px;">
+                    <p style="color: var(--verde); font-weight: bold;">💡 ¿Tienes una idea?</p>
+                    <p style="font-size: 1rem;">Cuéntanos qué necesitas. Desarrollamos soluciones a medida para hogares, empresas, industria y sector salud. ¡Hagámoslo realidad juntos!</p>
+                </div>
+            </div>
+            
+            <form>
+                <input type="text" name="nombre" placeholder="Tu Nombre Completo" required>
+                <input type="email" name="correo" placeholder="Tu Correo Electrónico" required>
+                <input type="tel" name="telefono" placeholder="Tu Teléfono / WhatsApp">
+                <select name="asunto">
+                    <option value="">— Selecciona el Asunto —</option>
+                    <option>Producto PEMF — Terapia Magnética</option>
+                    <option>Multi Scaner — Escáner Vehicular</option>
+                    <option>Control de Agua y Energía — Hogar</option>
+                    <option>Automatización Industrial / Farmacéutica</option>
+                    <option>Desarrollo de Proyecto a Medida</option>
+                    <option>Distribución / Comercialización</option>
+                    <option>Otra Consulta</option>
+                </select>
+                <textarea name="mensaje" placeholder="Cuéntanos qué necesitas, detalles, cantidades, dudas... Estamos aquí para ayudarte." required></textarea>
+                <button type="submit">✉️ Enviar Mensaje</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ==============================================
+                    FOOTER
+============================================== -->
+<footer>
+    <div class="contenedor">
+        <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#producto-pemf">Productos</a></li>
+            <li><a href="#lineas">Líneas de Negocio</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="copyright">
+            <p>© 2026 ELECEQUIP SAS — Todos los Derechos Reservados | Tecnología e Innovación Colombiana 🇨🇴</p>
+            <p style="margin-top: .5rem; font-size: .85rem;">Buenaventura, Valle del Cauca • Colombia</p>
+            <p style="margin-top: .5rem; font-size: .85rem;">🌐 jaidermoranararat08-lang.github.io/Elecequip-SAS</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ==============================================
+                SCRIPT — MENÚ MÓVIL
+============================================== -->
+<script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navMenu = document.getElementById('navMenu');
+    menuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navMenu.classList.remove('active'));
+    });
+</script>
+
+</body>
+</html>
